@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .topDiv {
+        width: 500px;
+        border: 2px solid black;
+        /* BFC */
+        /* overflow: auto; */
+        display: inline-block;
+      }
+      .floatDiv {
+        width: 100px;
+        height: 100px;
+        border: 2px dotted red;
+        color: red;
+        margin: 4px;
+        float: left;
+      }
+      .bottomDiv {
+        width: 500px;
+        height: 100px;
+        margin: 5px 0;
+        border: 2px dotted black;
+      }
+      .textDiv {
+        color: blue;
+        border: 2px solid blue;
+      }
+      /** 父级元素末尾添加块级元素 */
+      .blankDiv {
+        clear: both;
+      }
+      /** 利用伪元素 */
+      .clearfix:after {
+        content: '';
+        height: 0;
+        display: block;
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topDiv">
+      <div class="floatDiv">float left</div>
+      <div class="textDiv">
+        文字围绕浮动元素排版，但我们可能希望文字（.textDiv）排列在浮动元素下方，或者，我们并不希望.textDiv两边有浮动元素存在
+      </div>
+      <!-- <div class="blankDiv"></div> -->
+    </div>
+    <div class="bottomDiv">
+      文字围绕浮动元素排版，但我们可能希望文字（.textDiv）排列在浮动元素下方，或者，
+    </div>
+  </body>
+</html>

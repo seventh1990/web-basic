@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /** 无块级作用域 */
+      var tmp = new Date()
+      function f() {
+        console.log(tmp) // 想打印外层的时间作用域
+        if (false) {
+          var tmp = 'hello world' // 这里声明的作用域为整个函数
+        }
+      }
+      f() // undefined
+
+      var s = 'hello'
+      for (var i = 0; i < s.length; i++) {
+        console.log(s[i]) // i应该为此次for循环使用的变量
+      }
+      console.log(i) // 5 全局范围都可以读到
+
+      /** 块级作用域 */
+      function f1() {
+        let n = 5
+        if (true) {
+          let n = 10
+          console.log(n) // 10 内层的n
+        }
+        console.log(n) // 5 当前层的n
+      }
+      f1()
+
+      function f2() {
+        {
+          {
+            {
+              {
+                {
+                  let insane = 'Hello World'
+                }
+                console.log(insane) // 报错 读不到子作用域的变量
+              }
+            }
+          }
+        }
+      }
+      // f2() // 报错 读不到子作用域的变量
+
+      if (true) {
+        let a = function() {} // 作用域为块级 令声明的函数作用域范围更清晰
+      }
+
+      /** 不存在变量提升 */
+      // var 的情况
+      // console.log(foo) // 输出undefined
+      // var foo = 2
+      // // let 的情况
+      // console.log(bar) // 报错ReferenceError
+      // let bar = 2
+
+      /** 暂时性死区 */
+      // var tmp = 123 // 声明
+      // if (true) {
+      //   tmp = 'abc' // 报错 因为本区域有tmp声明变量
+      //   let tmp // 绑定if这个块级的作用域 不能出现tmp变量
+      // }
+
+      /** 不允许重复声明变量 */
+      function func(arg) {
+        // let arg // 报错
+        {
+          let arg // 不报错
+        }
+      }
+
+      /** let、const声明的全局变量不会挂在顶层对象下面 */
+      var a = 1
+      // 如果在 Node环境，可以写成 global.a
+      // 或者采用通用方法，写成 this.a
+      console.log(window.a) // 1
+
+      let b = 1
+      console.log(window.b) // undefined
+    </script>
+  </body>
+</html>
