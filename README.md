@@ -75,7 +75,7 @@
   >
   > ES6 的继承机制实质上是先创建父类的实例对象 this(所以必须先调用父类的 super()方法)，然后再用子类的构造函数修改 this。
 
-  - [ES6 的继承与 ES5 相比有什么不同](https://juejin.im/post/5d259684e51d454d56535874)
+  - [深入 JavaScript 继承原理](https://juejin.im/post/5a96d78ef265da4e9311b4d8#heading-7)
 
 - js 模块化（commonjs/AMD/CMD/ES6）
 

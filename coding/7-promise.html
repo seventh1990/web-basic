@@ -1,0 +1,50 @@
+<script>
+  class PromiseAProto {
+    then(resolve, reject) {
+      this.resolves = (this.resolves || []).concat(resolve || [])
+      this.rejects = (this.rejects || []).concat(reject || [])
+      return this
+    }
+  }
+  class PromiseA extends PromiseAProto {
+    constructor(cb) {
+      super(cb)
+      cb(() => {
+        setTimeout(() => {
+          var resolve = this.resolves.shift()
+          var ret = resolve && resolve()
+          if (this.isPromiseA(ret)) {
+            Object.assign(ret, this)
+          }
+        }, 0)
+      })
+    }
+    isPromiseA(cb) {
+      return cb instanceof this.constructor
+    }
+  }
+  //   new PromiseA((resolve, reject) => {
+  //     resolve()
+  //     console.log('hello')
+  //   }).then(() => {
+  //     setTimeout(() => {
+  //       console.log('world')
+  //     }, 2000)
+  //   })
+  new PromiseA((resolve, reject) => {
+    resolve()
+    console.log('hello')
+  })
+    .then(() => {
+      console.log('world')
+      return new PromiseA(resolve => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+        console.log('hello1')
+      })
+    })
+    .then(() => {
+      console.log('over1')
+    })
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function inheritPrototype(Parent, Child) {
+        // 创建父类原型的一个副本
+        const parentPrototype = Object.create(Parent.prototype)
+        // 将父类原型副本和子类原型合并，并赋值给子类的原型
+        Child.prototype = Object.assign(parentPrototype, Child.prototype)
+        // 重写被污染的子类的constructor
+        Child.prototype.constructor = Child
+      }
+
+      function Parent(name) {
+        this.name = name
+      }
+
+      Parent.prototype.getName = function() {
+        console.log(this.name)
+      }
+
+      function Child(color) {
+        // Parent.call(this, 'arzh')
+        this.color = color
+      }
+
+      Child.prototype.c = function() {
+        console.log('i am child')
+      }
+
+      inheritPrototype(Parent, Child)
+
+      var arzhChild = new Child('red')
+      arzhChild.name = 'test'
+      arzhChild.getName()
+      arzhChild.c()
+      console.log(arzhChild)
+    </script>
+  </body>
+</html>

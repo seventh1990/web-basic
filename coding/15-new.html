@@ -1,0 +1,29 @@
+<script>
+  //定义父类
+  function Parent() {
+    this.name = 'father'
+    this.age = '30'
+  }
+
+  //定义原型方法
+  Parent.prototype.getName = function() {
+    return this.name
+  }
+
+  //定义new函数
+  function __new__(Parent) {
+    //将原型方法通过  __proto__  传递到子类
+    var genarateChild = { __proto__: Parent.prototype }
+    //将this指向父类，获取父类的私有变量
+    Parent.call(genarateChild)
+    //返回子类
+    return genarateChild
+  }
+
+  //实例化一个子类
+  let child = __new__(Parent)
+
+  console.log(child.name)
+
+  console.log(child.age)
+</script>
