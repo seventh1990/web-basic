@@ -24,21 +24,21 @@
   obj2.language[1] = ['二', '三']
   obj3.language[2] = ['四', '五']
 
-  console.log(obj1)
+  // console.log(obj1)
   //obj1 = {
   //    'name' : 'lisi',
   //    'age' :  '18',
   //    'language' : [1,["二","三"],["四","五"]],
   //};
 
-  console.log(obj2)
+  // console.log(obj2)
   //obj2 = {
   //    'name' : 'lisi',
   //    'age' :  '18',
   //    'language' : [1,["二","三"],["四","五"]],
   //};
 
-  console.log(obj3)
+  // console.log(obj3)
   //obj3 = {
   //    'name' : 'zhangsan',
   //    'age' :  '20',
@@ -86,8 +86,45 @@
       hoby: 'coding'
     }
   }
-  const cloned = clone(target)
+  function deep(target) {
+    let ret,
+      targetType = checkedType(target)
+
+    if (targetType === 'Object') {
+      ret = {}
+    } else if (targetType === 'Array') {
+      ret = []
+    } else {
+      return target
+    }
+
+    for (const key in target) {
+      const val = target[key],
+        valType = checkedType(val)
+
+      if (valType === 'Array' || valType === 'Object') {
+        ret[key] = deep(val)
+      } else {
+        ret[key] = val
+      }
+    }
+
+    return ret
+  }
+  const cloned = deep(target)
   cloned.obj.hoby = 'test'
+  cloned.language[0] = 'test'
   console.log(target)
   console.log(cloned)
+  const t1 = { person: { name: 't1' } }
+  const t2 = { person: { name: 't2' } }
+  let t1b = JSON.parse(JSON.stringify(t1))
+  let t2b = JSON.parse(JSON.stringify(t2))
+  t2b.test = 'haha'
+  const c = { ...t1b, ...t2b }
+  t2b = null
+  t1b = null
+  console.log(t1b)
+  console.log(c)
+  console.log({ a: 1, a: 2 })
 </script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="progress" style="height: 20px;background-color:royalblue;">0%</div>
+    <div>
+      <button id="btn" onclick="test()">run</button>
+    </div>
+    <script>
+      var start = null
+      var element = document.getElementById('progress')
+      element.style.display = 'inline-block'
+      var btn = document.getElementById('btn')
+
+      function step(timestamp) {
+        if (!start) start = timestamp
+        var progress = timestamp - start
+        element.style.width = Math.min(progress / 10, 200) + 'px'
+        element.innerHTML = (progress / 20).toFixed(0) + '%'
+        if (progress < 2000) {
+          window.requestAnimationFrame(step)
+        }
+      }
+
+      let animation
+      function test() {
+        console.log('click', animation)
+
+        if (!animation) {
+          animation = window.requestAnimationFrame(step)
+          btn.innerHTML = 'stop'
+        } else {
+          const cancelAnimationFrame =
+            window.cancelAnimationFrame || window.mozCancelAnimationFrame
+          console.log(cancelAnimationFrame)
+
+          cancelAnimationFrame(animation)
+          btn.innerHTML = 'run'
+          setTimeout(() => {
+            animation = null
+          }, 0)
+        }
+      }
+      function a() {
+        console.log('a')
+      }
+      function hello(cb) {
+        return function() {
+          console.log('hello world')
+          cb()
+        }
+      }
+      a = hello(a)
+      a()
+      //   setTimeout(() => {}, 100)
+    </script>
+  </body>
+</html>

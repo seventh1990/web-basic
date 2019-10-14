@@ -1,0 +1,18 @@
+<script>
+  function findOne(num) {
+    console.log(num)
+    console.log(num.toString(2))
+    console.log(
+      num
+        .toString(2)
+        .split('0')
+        .join('')
+    )
+
+    return num
+      .toString(2)
+      .split('0')
+      .join('').length
+  }
+  console.log(findOne(958211653))
+</script>

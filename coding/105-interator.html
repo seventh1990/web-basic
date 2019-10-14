@@ -1,0 +1,23 @@
+<script>
+  var arr2 = [1, 'b', 3]
+  arr2.forEach(item => {
+    item = item + 'a'
+    console.log(item)
+  })
+  console.log(arr2)
+  var arr1 = [{ name: '鸣人', age: 16 }, { name: '佐助', age: 17 }]
+  arr1.forEach(item => {
+    item.age = item.age + 1
+  })
+  console.log(arr1)
+  let Users = [
+    { name: '鸣人', age: 16 },
+    { name: '卡卡西', age: 28 },
+    { name: '自来也', age: 50 },
+    { name: '佐助', age: 17 }
+  ]
+  Users = Users.sort((a, b) => {
+    return a.age - b.age
+  }).filter(u => u.age < 20)
+  console.log(Users)
+</script>

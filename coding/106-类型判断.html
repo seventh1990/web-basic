@@ -1,0 +1,21 @@
+<script>
+  console.log('typeof')
+  console.log(typeof null)
+  console.log(typeof undefined)
+  console.log(typeof 1)
+  console.log(typeof 'a')
+  console.log(typeof Symbol('b'))
+  console.log(typeof { a: 1 })
+  console.log(typeof ['a'])
+  console.log('---------------------')
+  const f = function() {
+    console.log('func')
+  }
+  Function.prototype.hi = () => console.log('hi')
+  Object.prototype.hello = () => console.log('hello')
+  f.hi()
+  f.hello()
+  console.log([] + {})
+  console.log([] == '')
+  console.log([].toString() === ''.toString())
+</script>

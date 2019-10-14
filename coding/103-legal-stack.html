@@ -1,0 +1,85 @@
+<script>
+  function Stack() {
+    const items = [] // 使用数组存储数据
+
+    // push方法向栈里压入一个元素
+    this.push = function(item) {
+      items.push(item)
+    }
+
+    // pop方法把栈顶的元素弹出
+    this.pop = function() {
+      return items.pop()
+    }
+
+    // top 方法返回栈顶元素
+    this.top = function() {
+      return items[items.length - 1]
+    }
+
+    // isEmpty返回栈是否为空
+    this.isEmpty = function() {
+      return items.length == 0
+    }
+
+    // size方法返回栈的大小
+    this.size = function() {
+      return items.length
+    }
+
+    // clear 清空栈
+    this.clear = function() {
+      items = []
+    }
+  }
+
+  function is_leagl_brackets(string) {
+    const stackSmall = new Stack()
+    const stackMid = new Stack()
+    const stackLarge = new Stack()
+    for (let i = 0; i < string.length; i++) {
+      const item = string[i]
+      if (item == '(') {
+        // 将左括号压入栈
+        stackSmall.push(item)
+      } else if (item == ')') {
+        // 如果为空,就说明没有左括号与之抵消
+        if (stackSmall.isEmpty()) {
+          return false
+        } else {
+          // 将栈顶的元素弹出
+          stackSmall.pop()
+        }
+      }
+      if (item == '{') {
+        // 将左括号压入栈
+        stackMid.push(item)
+      } else if (item == '}') {
+        // 如果为空,就说明没有左括号与之抵消
+        if (stackMid.isEmpty()) {
+          return false
+        } else {
+          // 将栈顶的元素弹出
+          stackMid.pop()
+        }
+      }
+      if (item == '[') {
+        // 将左括号压入栈
+        stackLarge.push(item)
+      } else if (item == ']') {
+        // 如果为空,就说明没有左括号与之抵消
+        if (stackLarge.isEmpty()) {
+          return false
+        } else {
+          // 将栈顶的元素弹出
+          stackLarge.pop()
+        }
+      }
+    }
+    return (
+      stackSmall.size() == 0 && stackMid.size() == 0 && stackLarge.size() == 0
+    )
+  }
+  console.log(is_leagl_brackets('(})'))
+  console.log(is_leagl_brackets('({})(()[]'))
+</script>
