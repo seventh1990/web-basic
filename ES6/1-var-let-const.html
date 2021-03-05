@@ -86,6 +86,18 @@
 
       let b = 1
       console.log(window.b) // undefined
+
+      // var val = { name: 'a' }
+      function aa(val) {
+        //函数参数的变量也会提升
+        console.log(val) //'函数传参'
+        var val1 = { name: 'b' }
+        console.log(val) //'变量声明'
+      }
+      // console.log(val)
+      aa('c')
+      // val = 'a'
+      console.log(val1)
     </script>
   </body>
 </html>

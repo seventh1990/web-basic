@@ -1,0 +1,362 @@
+<script>
+  //   function bind(fn, target) {
+  //     return function() {
+  //       return fn.apply(target, arguments)
+  //     }
+  //   }
+  //   var obj = {
+  //     a: 2
+  //   }
+  //   function foo(params) {
+  //     console.log(this.a, params)
+  //     return this.a + params
+  //   }
+  //   var bar = bind(foo, obj)
+  //   var c = bar('test')
+  //   console.log(c)
+  //   var baz = foo.bind(obj)
+  //   console.log(baz)
+
+  //   function foo(a) {
+  //     this.a = a
+
+  //     // return { name: 'foo' }
+  //   }
+  //   var bar = new foo(2)
+  //   console.log(bar)
+  //   console.log(bar.a)
+
+  //   console.log({})
+  //   console.log(Object.create(null))
+
+  //   if (!Function.prototype.softBind) {
+  //     Function.prototype.softBind = function(obj) {
+  //       var fn = this,
+  //         curried = [].slice.call(arguments, 1),
+  //         bound = function bound() {
+  //           return fn.apply(
+  //             !this ||
+  //               (typeof window !== 'undefined' && this === window) ||
+  //               (typeof global !== 'undefined' && this === global)
+  //               ? obj
+  //               : this,
+  //             curried.concat.apply(curried, arguments)
+  //           )
+  //         }
+  //       bound.prototype = Object.create(fn.prototype)
+  //       return bound
+  //     }
+  //   }
+  //   function foo() {
+  //     console.log('name: ' + this.name)
+  //   }
+  //   var obj = { name: 'obj' },
+  //     obj2 = { name: 'obj2' },
+  //     obj3 = { name: 'obj3' }
+  //   var fooOBJ = foo.softBind(obj)
+  //   fooOBJ() // name: obj
+  //   obj2.foo = foo.softBind(obj)
+  //   obj2.foo() // name: obj2   <---- 看!!!
+  //   fooOBJ.call(obj3) // name: obj3   <---- 看!
+  //   setTimeout(obj2.foo, 10) // name: obj   <---- 退回到软绑定
+
+  //   a = 4
+  //   window.a = 5
+  //   ;(function iife(global) {
+  //     global.a = 6
+  //     a = 7
+  //     console.log(global.a)
+  //   })(window)
+  //   console.log(a)
+  //   console.log(window.a)
+
+  //   var d = new Date().getTime()
+  //   console.log(d)
+  //   console.log(typeof d)
+  //   console.log(d instanceof Number)
+  //   console.log(Object.prototype.toString.call(d))
+
+  //   var myObj = {}
+  //   Object.defineProperty(myObj, 'a', {
+  //     value: 2,
+  //     writable: true,
+  //     configurable: true,
+  //     enumerable: true
+  //   })
+  //   console.log(myObj)
+  //   var myObject = {
+  //     // 为 `a` 定义 getter
+  //     get a() {
+  //       return this._a_
+  //     },
+
+  //     // 为 `a` 定义 setter
+  //     set a(val) {
+  //       this._a_ = val * 2
+  //     }
+  //   }
+  //   myObject.a = 2
+  //   console.log(myObject.a)
+  //   console.log(myObject._a_)
+  //   var myObject = {}
+  //   Object.defineProperty(
+  //     myObject,
+  //     'a',
+  //     // 使 `a` 可枚举，如一般情况
+  //     { enumerable: true, value: 2 }
+  //   )
+  //   Object.defineProperty(
+  //     myObject,
+  //     'b',
+  //     // 使 `b` 不可枚举
+  //     { enumerable: false, value: 3 }
+  //   )
+  //   console.log(myObject.b) // 3
+  //   console.log('b' in myObject) // true
+  //   console.log(myObject.hasOwnProperty('b')) // true
+  //   for (var k in myObject) {
+  //     console.log(k, myObject[k])
+  //   }
+  //   console.log(Object.keys(myObject))
+  //   console.log(Object.getOwnPropertyNames(myObject))
+  //   var arr = ['a', 'b', 'c']
+  //   for (let key in arr) {
+  //     console.log(key, arr[key])
+  //   }
+  //   for (let v of arr) {
+  //     console.log(v)
+  //   }
+  //   var it = arr[Symbol.iterator]()
+  //   var flag = false
+  //   do {
+  //     flag = it.next()
+  //     console.log(flag)
+  //     flag = flag.done
+  //   } while (!flag)
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   var obj = { a: 'name', b: 'age' }
+  //   Object.defineProperty(obj, Symbol.iterator, {
+  //     enumerable: false,
+  //     writable: false,
+  //     value: function() {
+  //       var o = this,
+  //         idx = 0,
+  //         ks = Object.keys(o)
+  //       return {
+  //         next: function() {
+  //           return {
+  //             value: o[ks[idx++]],
+  //             done: idx > ks.length
+  //           }
+  //         }
+  //       }
+  //     }
+  //   })
+  //   var it = obj[Symbol.iterator]()
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   console.log(it.next())
+  //   for (const v of obj) {
+  //     console.log(v)
+  //   }
+  //   var randoms = {
+  //     [Symbol.iterator]: function() {
+  //       return {
+  //         next: function() {
+  //           return { value: Math.random() }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   var randoms_pool = []
+  //   for (var r of randoms) {
+  //     randoms_pool.push(r)
+  //     if (randoms_pool.length === 10) break
+  //   }
+  //   console.log(randoms_pool)
+  //   console.log(Symbol.iterator)
+
+  //   var str = new String('abc'),
+  //     str2 = String('abc')
+  //   console.log(str)
+  //   console.log(typeof str)
+  //   console.log(Object.prototype.toString.call(str))
+  //   console.log(str2)
+  //   console.log(typeof str2)
+  //   console.log(Object.prototype.toString.call(str2))
+
+  // function mixin(source, target) {
+  //   for (let key in source) {
+  //     if (!(key in target)) {
+  //       target[key] = source[key]
+  //     }
+  //   }
+  //   return target
+  // }
+  // var Vehicle = {
+  //   engines: 1,
+  //   ignition: function() {
+  //     console.log('Turning on my engine.')
+  //   },
+  //   drive: function() {
+  //     this.ignition()
+  //     console.log('Steering and moving forward')
+  //   }
+  // }
+  // var Car = mixin(Vehicle, {
+  //   wheels: 4,
+  //   drive: function() {
+  //     Vehicle.drive.call(this)
+  //     console.log('Rolling on all ' + this.wheels + ' wheels!')
+  //   }
+  // })
+  // Car.drive()
+  // console.log(Car)
+
+  // function Vehicle() {
+  //   this.engines = 1
+  // }
+  // Vehicle.prototype.ignition = function() {
+  //   console.log('ignition')
+  // }
+  // Vehicle.prototype.drive = function() {
+  //   this.ignition()
+  //   console.log('drive')
+  // }
+  // function Car() {
+  //   var car = new Vehicle()
+  //   car.wheels = 4
+  //   var vehDrive = car.drive
+  //   car.drive = function() {
+  //     vehDrive.call(this)
+  //     console.log('car drive ' + this.wheels)
+  //   }
+  //   return car
+  // }
+  // var car = Car()
+  // var car2 = Car()
+  // car2.wheels = 6
+  // car.drive()
+  // car2.drive()
+
+  // function Foo(name) {
+  //   this.name = name
+  // }
+  // Foo.prototype.myName = function() {
+  //   return this.name
+  // }
+  // function Bar(name, label) {
+  //   Foo.call(this, name)
+  //   this.label = label
+  // }
+  // var a = new Bar('a', 'obj a')
+  // a.myName()
+
+  // var foo = {
+  //   a: 2,
+  //   something: function() {
+  //     console.log('Tell me something good...')
+  //   }
+  // }
+  // var bar = Object.create(foo)
+  // bar.something() // Tell me something good...
+  // foo.a = 3
+  // console.log(bar.a)
+  // console.log(bar, foo)
+  // console.log(bar.__proto__ === foo)
+  // console.log(Object.prototype)
+
+  // function Baz() {
+  //   this.name = 'init'
+  // }
+  // var b = {}
+  // console.log(Baz.call(b))
+  // console.log(b.prototype === Baz)
+  // Baz.prototype.a = 4
+  // var b = new Baz()
+  // console.log(b.a)
+  // Baz.prototype.a = 5
+  // console.log(b.a)
+  // b.a = 6
+  // console.log(b.a, Baz.prototype.a)
+  // console.log(b.__proto__ === Baz.prototype)
+  // console.log(Baz)
+
+  // function Father(name) {
+  //   this.name = name
+  //   this.colors = ['red', 'blue', 'green']
+  // }
+  // Father.prototype.sayName = function() {
+  //   console.log(this.name)
+  // }
+  // function Son(name, age) {
+  //   Father.call(this, name) //继承实例属性，第一次调用Father()
+  //   this.age = age
+  // }
+  // // extend(Son, Father) //继承父类方法,此处并不会第二次调用Father()
+  // var construct = Son.prototype.constructor
+  // Son.prototype = Object.create(Father.prototype)
+  // Son.prototype.constructor = construct
+  // Son.prototype.sayAge = function() {
+  //   console.log(this.age)
+  // }
+  // var instance1 = new Son('louis', 5)
+  // instance1.colors.push('black')
+  // console.log(instance1.colors) //"red,blue,green,black"
+  // instance1.sayName() //louis
+  // instance1.sayAge() //5
+
+  // var instance1 = new Son('zhai', 10)
+  // console.log(instance1.colors) //"red,blue,green"
+  // instance1.sayName() //zhai
+  // instance1.sayAge() //10
+
+  // Function.prototype.myCall = function(context, ...args) {
+  //   context = context || {};
+  //   context.fn = this;
+  //   console.log(this);
+
+  //   const res = context.fn(...args);
+  //   delete context.fn;
+  //   return res;
+  // };
+  // const arrayLike = {
+  //   length: 0
+  // };
+  // // const myCall = [].push.myCall;
+  // // myCall(arrayLike, 1);
+  // [].push.myCall(arrayLike, 1);
+  // console.log([].push.__proto__.__proto__.__proto__);
+  // console.log(arrayLike); // {0: 1, lenght: 1}
+
+  // function foo(...args) {
+  //   console.log(args);
+  // }
+  // // 将数组散开作为参数
+  // foo.apply(null, [2, 3]); // a:2, b:3
+  // // 用 `bind(..)` 进行柯里化
+  // var bar = foo.bind(null, 2);
+  // // bar(3); // a:2, b:3
+  // bar = bar.bind(null, 3);
+  // bar = bar.bind(null, 4);
+  // bar();
+
+  function myNew() {
+    // 创建一个实例对象
+    var obj = new Object();
+    // 取得外部传入的构造器
+    var Constructor = Array.prototype.shift.call(arguments);
+    // 实现继承，实例可以访问构造器的属性
+    obj.__proto__ = Constructor.prototype;
+    // 调用构造器，并改变其 this 指向到实例
+    var ret = Constructor.apply(obj, arguments);
+    // 如果构造函数返回值是对象则返回这个对象，如果不是对象则返回新的实例对象
+    return typeof ret === "object" && ret !== null ? ret : obj;
+  }
+</script>

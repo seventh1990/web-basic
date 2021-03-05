@@ -1,0 +1,121 @@
+<script>
+  // let a = 1
+  // function foo() {
+  //   let a = 2
+  //   if (true) {
+  //     let a = 3
+  //     console.log(a)
+  //   }
+  //   console.log(a)
+  // }
+  // foo()
+  // console.log(a)
+  // function bar(a) {
+  //   a = 4
+  //   console.log(a)
+  // }
+  // bar(a)
+  // console.log(a)
+  // console.log(a++)
+  // console.log(++a)
+
+  // let a = 1,
+  //   b = { name: 'b' }
+  // !(function iife(global, obj) {
+  //   let a = 2
+  //   obj.name = 'i'
+  //   console.log(a)
+  //   global.a = 3
+  //   console.log(global.a)
+  // })(window, b)
+  // window.a = 4
+  // console.log(a)
+  // console.log(window.a)
+  // console.log(b)
+  // console.log(window)
+  // for (var i = 0; i < 5; i++) {
+  //   console.log(i)
+  // }
+  // console.log(i)
+
+  // a = 2 // 未找到a, 创建一个并赋值
+  // var a // 已经存在a, 忽略
+  // console.log(a) // 2
+  // // -------------
+  // console.log(a) // 未找到a, 创建一个
+  // var a = 2 // 已存在a, 忽略var, 赋值
+  // foo() // TypeError
+  // var a = true
+  // if (a) {
+  //   function foo() {
+  //     console.log('a')
+  //   }
+  // } else {
+  //   function foo() {
+  //     console.log('b')
+  //   }
+  // }
+
+  // var Archie = (function Archie() {
+  //   var modules = {}
+
+  //   function define(name, deps, impl) {
+  //     for (let i = 0; i < deps.length; i++) {
+  //       deps[i] = modules[deps[i]]
+  //     }
+  //     modules[name] = impl.apply(impl, deps)
+  //   }
+
+  //   function get(name) {
+  //     return modules[name]
+  //   }
+
+  //   return {
+  //     define,
+  //     get
+  //   }
+  // })()
+  // Archie.define('bar', [], function() {
+  //   function hello(who) {
+  //     return 'Let me introduce: ' + who
+  //   }
+
+  //   return {
+  //     hello
+  //   }
+  // })
+  // Archie.define('foo', ['bar'], function() {
+  //   var hungry = 'chiu'
+  //   function awesome() {
+  //     console.log(bar.hello(hungry).toUpperCase())
+  //   }
+
+  //   function change(val) {
+  //     hungry = val
+  //   }
+
+  //   return {
+  //     awesome,
+  //     change
+  //   }
+  // })
+  // var bar = Archie.get('bar')
+  // var foo = Archie.get('foo')
+  // var foo2 = Archie.get('foo')
+  // console.log(bar.hello('archie'))
+  // foo2.change('change')
+  // foo.awesome()
+  // console.log(foo === foo2)
+
+  var obj = {
+    id: 'awesome',
+    cool: function coolFn() {
+      console.log(this.id)
+    }
+  }
+
+  var id = 'not awesome'
+
+  obj.cool()
+  setTimeout(obj.cool, 0)
+</script>

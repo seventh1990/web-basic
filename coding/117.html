@@ -1,0 +1,31 @@
+<script>
+  Function.prototype.aCall = function(context, ...args) {
+    context = context || window;
+    // let fn = new Symbol("fn");
+    context.fn = this;
+    let result = context.fn(...args);
+
+    delete context.fn;
+    return result;
+  };
+  Function.prototype.aApply = function(context, args) {
+    context = context || window;
+    args = args || [];
+    context.fn = this;
+    let result = context.fn(...args);
+
+    delete context.fn;
+    return result;
+  };
+  function foo(name) {
+    this.name = name || "foo";
+  }
+  function bar(age) {
+    this.age = age || 29;
+  }
+  var obj = {};
+  foo.aCall(obj);
+  foo.aApply(obj, ["hello"]);
+  bar.aApply(obj);
+  console.log(obj);
+</script>

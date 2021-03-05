@@ -41,16 +41,32 @@
       .BFC {
         overflow: auto;
       }
+      .test {
+        width: 500px;
+        border: 1px solid black;
+      }
+      .margin {
+        background-color: #73de80;
+        height: 100px;
+        width: 100px;
+        margin: 10px 0 100px 0;
+        float: left;
+      }
     </style>
   </head>
   <body>
-    <div class="box BFC">
+    <!-- <div class="box BFC">
       <div class="left"></div>
       <div class="right BFC">
         <div class="little"></div>
         <div class="little"></div>
         <div class="little"></div>
       </div>
-    </div>
+    </div> -->
+    <section class="test BFC">
+      <section class="margin"></section>
+      <section class="margin"></section>
+    </section>
+    <section class="margin"></section>
   </body>
 </html>

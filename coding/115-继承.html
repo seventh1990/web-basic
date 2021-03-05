@@ -1,0 +1,137 @@
+<script>
+  /**
+   * 原型链
+   */
+  //   function Animal() {
+  //     this.property = 'animal'
+  //   }
+  //   Animal.prototype.sayHi = function() {
+  //     console.log(this.property)
+  //   }
+  //   function Dog() {
+  //     this.name = 'ha'
+  //   }
+  //   Dog.prototype = new Animal()
+  //   Dog.prototype.wang = function() {
+  //     console.log(this.name)
+  //   }
+  //   var dog = new Dog()
+  //   dog.sayHi()
+  //-----------------------------------------------
+
+  /**
+   * 借用构造函数
+   */
+  //   function Animal(name) {
+  //     this.name = name
+  //     this.colors = ['red', 'blue', 'green']
+  //   }
+  //   function Dog() {
+  //     Animal.call(this, 'wangcai')
+  //   }
+  //   var dog = new Dog()
+  //   dog.colors.push('black')
+  //   console.log(dog.colors)
+  //   console.log(dog.name)
+  //   var dog2 = new Dog()
+  //   console.log(dog2.colors)
+  //----------------------------------------------
+
+  /**
+   * 组合继承
+   */
+  //   function Animal(name) {
+  //     this.name = name
+  //     this.colors = ['red', 'blue', 'green']
+  //   }
+  //   Animal.prototype.sayName = function() {
+  //     console.log(this.name)
+  //   }
+  //   function Dog(name, age) {
+  //     Animal.call(this, name)
+  //     this.age = age
+  //   }
+  //   Dog.prototype = new Animal()
+  //   Dog.prototype.sayAge = function() {
+  //     console.log(this.age)
+  //   }
+  //   var dog = new Dog('wangcai', 3)
+  //   dog.colors.push('black')
+  //   console.log(dog.colors)
+  //   dog.sayName()
+  //   dog.sayAge()
+  //   var dog2 = new Dog('dahuang', 4)
+  //   console.log(dog2.colors)
+  //   dog2.sayName()
+  //   dog2.sayAge()
+  //--------------------------------------------
+
+  /**
+   * 原型式继承
+   */
+  //   function object(o) {
+  //     function F() {}
+  //     F.prototype = o
+  //     return new F()
+  //   }
+  //   var person = {
+  //     name: 'archie',
+  //     friends: ['rex', 'clarence']
+  //   }
+  //   //   var another = object(person)
+  //   var another = Object.create(person)
+  //   another.name = 'jordan'
+  //   another.friends.push('kobe')
+  //   //   var yetAnother = object(person)
+  //   var yetAnother = Object.create(person)
+  //   yetAnother.name = 'leonard'
+  //   yetAnother.friends.push('george')
+  //   console.log(person.friends)
+  //   console.log(another.friends)
+  //   console.log(yetAnother.friends)
+  //---------------------------------------------
+
+  /**
+   * 寄生式继承
+   */
+  //   function createAnother(original) {
+  //     var clone = Object.create(original) // 创建对象
+  //     // 增强对象
+  //     clone.sayHi = function() {
+  //       console.log('hi')
+  //     }
+  //     return clone
+  //   }
+  //   var person = {
+  //     name: 'jordan',
+  //     friends: ['james', 'kobe']
+  //   }
+  //   var another = createAnother(person)
+  //   another.sayHi()
+  //   console.log(another)
+  //----------------------------------------------------
+
+  /**
+   * 寄生组合式继承
+   */
+  function inheritPrototype(child, parent) {
+    var prototype = Object.create(parent.prototype) // 创建对象
+    prototype.constructor = child // 增强对象
+    child.prototype = prototype // 指定对象
+  }
+  function Parent(name) {
+    this.name = name
+    this.colors = ['red', 'blue', 'green']
+  }
+  Parent.prototype.sayName = function() {
+    console.log(this.name)
+  }
+  function Child(name, age) {
+    Parent.call(this, name)
+    this.age = age
+  }
+  inheritPrototype(Child, Parent)
+  Child.prototype.sayAge = function() {
+    console.log(this.age)
+  }
+</script>

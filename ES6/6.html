@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style>
-      .demo {
-        width: 0;
-        height: 0;
-        border-left: 50px solid transparent;
-        /* border-right: 50px solid transparent; */
-        border-bottom: 50px solid red;
-      }
-    </style>
   </head>
   <body>
-    <div class="demo"></div>
+    <script>
+      new Promise(resolve => {
+        const ret = foo(resolve)
+        console.log('promise', ret)
+      }).then(res => console.log('then', res))
+      function foo(resolve) {
+        return resolve(false)
+        console.log('foo')
+      }
+    </script>
   </body>
 </html>

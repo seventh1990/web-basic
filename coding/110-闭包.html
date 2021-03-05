@@ -1,0 +1,12 @@
+<script>
+  function addToArr() {
+    var arr = []
+    return function(element) {
+      arr.push(element)
+      console.log(arr)
+    }
+  }
+  var ret = addToArr()
+  ret('a')
+  ret('b')
+</script>

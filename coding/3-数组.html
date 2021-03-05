@@ -1,0 +1,38 @@
+<script>
+  // function unique(arr) {
+  //   if (!Array.isArray(arr)) {
+  //     console.log('type error!')
+  //     return
+  //   }
+  //   let res = [arr[0]]
+  //   for (let i = 1; i < arr.length; i++) {
+  //     let flag = true
+  //     for (let j = 0; j < res.length; j++) {
+  //       if (arr[i] === res[j]) {
+  //         flag = false
+  //         break
+  //       }
+  //     }
+  //     if (flag) {
+  //       res.push(arr[i])
+  //     }
+  //   }
+  //   return res
+  // }
+  // console.log(unique([1, 1, 222, 222, 3, 3, 3, 5]))
+  // Array.prototype.flat = function() {
+  //   const str = this.toString()
+  //   console.log(this, str)
+
+  //   return str.split(',').map(item => +item)
+  // }
+  // console.log([1, [2, [3, 4, [5]]], [2, 3]].flat())
+  let nums = [1, 2, 3];
+  // 多个数的加和
+  let newNums = nums.reduce(function(preSum, curVal, array) {
+    console.log(preSum);
+
+    return preSum + curVal;
+  }, 0);
+  console.log(newNums); //6
+</script>

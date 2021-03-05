@@ -47,7 +47,7 @@
 
 - 如何实现一个自适应的正方形
 
-  - [自适应正方形](https://juejin.im/post/5b12ae3de51d4506d73f0bb4)
+  - padding % 相对于父元素的宽度
 
 - 如何用 css 实现一个三角形
 
