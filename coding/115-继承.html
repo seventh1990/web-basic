@@ -2,39 +2,44 @@
   /**
    * 原型链
    */
-  //   function Animal() {
-  //     this.property = 'animal'
-  //   }
-  //   Animal.prototype.sayHi = function() {
-  //     console.log(this.property)
-  //   }
-  //   function Dog() {
-  //     this.name = 'ha'
-  //   }
-  //   Dog.prototype = new Animal()
-  //   Dog.prototype.wang = function() {
-  //     console.log(this.name)
-  //   }
-  //   var dog = new Dog()
-  //   dog.sayHi()
+    // function Animal() {
+    //   this.property = 'animal'
+    // }
+    // Animal.prototype.sayHi = function() {
+    //   console.log(this.property)
+    // }
+    // function Dog() {
+    //   this.name = 'ha'
+    // }
+    // Dog.prototype = new Animal()
+    // Dog.prototype.wang = function() {
+    //   console.log(this.name)
+    // }
+    // var dog = new Dog()
+    // dog.sayHi()
+    // dog.wang()
   //-----------------------------------------------
 
   /**
    * 借用构造函数
    */
-  //   function Animal(name) {
-  //     this.name = name
-  //     this.colors = ['red', 'blue', 'green']
-  //   }
-  //   function Dog() {
-  //     Animal.call(this, 'wangcai')
-  //   }
-  //   var dog = new Dog()
-  //   dog.colors.push('black')
-  //   console.log(dog.colors)
-  //   console.log(dog.name)
-  //   var dog2 = new Dog()
-  //   console.log(dog2.colors)
+    // function Animal(name) {
+    //   this.name = name
+    //   this.colors = ['red', 'blue', 'green']
+    // }
+    // Animal.prototype.hi=function(){
+    //   console.log(this.name,'hi');
+    // }
+    // function Dog() {
+    //   Animal.call(this, 'wangcai')
+    // }
+    // var dog = new Dog()
+    // dog.colors.push('black')
+    // console.log(dog.colors)
+    // console.log(dog.name)
+    // // dog.hi() // 不存在
+    // var dog2 = new Dog()
+    // console.log(dog2.colors)
   //----------------------------------------------
 
   /**
@@ -114,24 +119,28 @@
   /**
    * 寄生组合式继承
    */
-  function inheritPrototype(child, parent) {
-    var prototype = Object.create(parent.prototype) // 创建对象
-    prototype.constructor = child // 增强对象
-    child.prototype = prototype // 指定对象
-  }
-  function Parent(name) {
-    this.name = name
-    this.colors = ['red', 'blue', 'green']
-  }
-  Parent.prototype.sayName = function() {
-    console.log(this.name)
-  }
-  function Child(name, age) {
-    Parent.call(this, name)
-    this.age = age
-  }
-  inheritPrototype(Child, Parent)
-  Child.prototype.sayAge = function() {
-    console.log(this.age)
-  }
+  // function inheritPrototype(child, parent) {
+  //   var prototype = Object.create(parent.prototype) // 创建对象
+  //   prototype.constructor = child // 增强对象
+  //   child.prototype = parent.prototype // 指定对象
+  // }
+  // function Parent(name) {
+  //   this.name = name
+  //   this.colors = ['red', 'blue', 'green']
+  // }
+  // Parent.prototype.sayName = function() {
+  //   console.log(this.name)
+  // }
+  // function Child(name, age) {
+  //   Parent.call(this, name)
+  //   this.age = age
+  // }
+  // inheritPrototype(Child, Parent)
+  // Child.prototype.sayName = function() {
+  //   console.log(this.age,this.name)
+  // }
+  // var c = new Child('joe',20)
+  // var p = new Parent('joe father')
+  // c.sayName()
+  // p.sayName()
 </script>
