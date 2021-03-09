@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // server-side
+      //   app.get("api", function (req, res) {
+      //     let callback = req.query.func;
+      //     let content = callback + "({'message':'测试数据2'})";
+      //     res.send(content);
+      //   });
+
+      function showJsonp(response) {
+        console.log(response);
+      }
+
+      var url = "http://xxx.com/api?func=showJsonp";
+      var script = document.createElement("script");
+      script.setAttribute("src", url);
+      script.setAttribute("type", "text/javascript");
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function taskSum(timeout, fn) {
+        setTimeout(() => {
+          fn();
+        }, timeout);
+
+        return new Sum(timeout);
+      }
+
+      function Sum(timeout) {
+        this.timeout = timeout;
+      }
+
+      Sum.prototype.task = function task(timeout, fn) {
+        this.timeout += timeout;
+        setTimeout(() => {
+          fn();
+        }, this.timeout);
+
+        return this;
+      };
+
+      const start = +new Date();
+      taskSum(1000, () => {
+        console.log(+new Date() - start);
+        console.log(1);
+      })
+        .task(1200, () => {
+          console.log(+new Date() - start);
+          console.log(2);
+        })
+        .task(1300, () => {
+          console.log(+new Date() - start);
+          console.log(3);
+        });
+    </script>
+  </body>
+</html>

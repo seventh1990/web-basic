@@ -8,19 +8,19 @@
 
 - 事件循环 iiii
 - taskSum(1000,()=>{console.log(1)}).task(1200,()=>{console.log(2)}).task(1300,()=>{console.log(3)})，这里等待 1s，打印 1，之后等待 1.2s，打印 2，之后等待 1.3s，打印 3
+  [实现](./JS/task.html)
 - 宏任务微任务
 - promise
-- 怎么将一个异步方法 promise 化，以及实现 promise.all()方法
-- promise async settimeout 先后次序
+- [promise async settimeout 先后次序](./JS/promise-async-settimeout.html)
+- 怎么将一个异步方法 promise 化(new Promise())，以及[实现 promise.all()方法](./JS/promise.all.html)
 - requestAnimationFrame 和 setTimeout、setInterval 的区别，requestAnimationFrame 可以做什么
 - [事件委托](https://juejin.cn/post/6844903589052153869)
 - 点击 table 的 td 显示 td 内容
 - 实现 当 ul 点击时 输出 子元素 li 的内容
-- event 类 on once 等方法
 
 ### 浏览器
 
-- 前端跨域；jsonp 的实现（要代码）方式；后台响应头要加什么 iii
+- 前端跨域；后台响应头要加什么；[jsonp 的实现（要代码）方式](./JS/JSONP.html) iii
 - 浏览器 reflow 和 repaint
 - 前端缓存、会话机制
 - 获取页面所有 img 并且下载
@@ -43,8 +43,9 @@
 
 ### JS
 
+- [fetch 取消](https://juejin.cn/post/6844904113130438663)
 - 请实现如下的函数，可以批量请求数据，所有的 URL 地址在 urls 参数中，同时可以通过 max 参数控制请求的并发度，当所有请求结束之后，需要执行 callback 回调函数。发请求的函数可以直接使用 fetch 即可 iiiii
-- fetch 取消
+  [实现](./JS/limit-fetch.html)
 
 - 日期转化为 2 小时前，1 分钟前等
 - 固定日期与当前时间格式化处理
@@ -141,7 +142,7 @@
 
 ### 其他
 
-- 原码，补码，反码
+- [原码，补码，反码](https://www.zhihu.com/question/20159860)
 
 - webpack 性能优化
 
@@ -152,6 +153,7 @@
 - nodejs 的事件循环
 - Process.nextTick，setImmediate 和 promise.then 的优先级
   Process.nextTick，promise, setImmediate 的优先级
+- event 类 on once 等方法
 - nodejs 相关的应用（答：开发命令行工具、web 服务，ssr，数据库操作等）
 - express、koa、redis 等技术相关应用
 - Nodejs express koa

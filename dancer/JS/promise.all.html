@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Promise.alldiy = function (promises) {
+        let results = [];
+        let promiseCount = 0;
+        let promisesLength = promises.length;
+        return new Promise(function (resolve, reject) {
+          if (promisesLength === 0) return resolve();
+          for (let i = 0; i < promises.length; i++) {
+            // 使用let保证promise顺序执行
+            Promise.resolve(promises[i]).then(
+              function (res) {
+                results[i] = res;
+                promiseCount++;
+                // 当所有函数都正确执行了，resolve输出所有返回结果。
+                if (promiseCount === promisesLength) {
+                  resolve(results);
+                }
+              },
+              function (err) {
+                reject(err);
+              }
+            );
+          }
+        });
+      };
+
+      var p1 = new Promise((resolve) => {
+        setTimeout(() => {
+          return resolve(3);
+        }, 1000);
+      });
+      var p2 = Promise.resolve(1);
+      var p3 = Promise.resolve(2);
+      var p = Promise.alldiy([p1, p2, p3]);
+      p.then((e) => {
+        console.log(e);
+      });
+    </script>
+  </body>
+</html>

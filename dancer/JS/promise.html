@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // console.log(
+      //   Promise.resolve(new Promise((resolve) => {})).then((res) => {
+      //     console.log(res);
+      //   })
+      // );
+      // Promise.resolve(
+      //   new Promise((resolve, reject) => {
+      //     reject("err");
+      //   })
+      // )
+      //   .then((res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
+      // new Promise((resolve) => {
+      //   setTimeout(() => {
+      //     resolve(1);
+      //   }, 3000);
+      // }).then((res) => {
+      //   console.log("promise");
+      // });
+      // setTimeout(() => {
+      //   console.log("timeout");
+      // }, 0);
+
+      // new Promise((resolve, reject) => {
+      //   reject(1);
+      // })
+      //   .then((res) => {
+      //     console.log("promise");
+      //   })
+      //   .catch((err) => {
+      //     console.log("catch", err);
+      //     // return Promise.resolve(err);
+      //   })
+      //   .catch((res) => {
+      //     console.log("catch after catch", res);
+      //   });
+
+      function PromiseT(fn) {
+        const self = this;
+        self.status = "pending";
+        self.fullfilledCbs = [];
+        self.rejectedCbs = [];
+
+        function resolve(value) {
+          self.status = "fullfilled";
+          console.log("resolve", value);
+        }
+
+        function reject(value) {
+          console.log("reject", value);
+        }
+
+        try {
+          fn(resolve, reject);
+        } catch (error) {
+          reject(error);
+        }
+      }
+
+      PromiseT.resolve = function __resolve__(value) {
+        return new PromiseT((resolve) => {
+          resolve(value);
+        });
+      };
+
+      const p = PromiseT.resolve(1);
+      console.log(PromiseT.resolve(1));
+    </script>
+  </body>
+</html>
