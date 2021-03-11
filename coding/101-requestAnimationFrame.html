@@ -46,18 +46,6 @@
           }, 0)
         }
       }
-      function a() {
-        console.log('a')
-      }
-      function hello(cb) {
-        return function() {
-          console.log('hello world')
-          cb()
-        }
-      }
-      a = hello(a)
-      a()
-      //   setTimeout(() => {}, 100)
     </script>
   </body>
 </html>
