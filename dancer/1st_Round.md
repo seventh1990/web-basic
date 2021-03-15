@@ -78,9 +78,9 @@
 - 多空格字符串格式化为数组
 - 改写一段代码，不考虑随机延时的影响，按顺序输出一段数字
 - 设计一套机制，两个千位大数相乘
-- 代码实现连续点击 3 次每次间隔不超过 1 秒然后弹出页面（类似安卓的关于手机彩蛋）
+- 代码实现连续点击 3 次每次间隔不超过 1 秒然后弹出页面（类似安卓的关于手机彩蛋） [实现](./JS/tri-click.html)
 - 给说有数组对象添加一个方法，返回出现频率>=n 的元素列表；
-- [1,2,3].map(parseInt) 执行结果
+- [1,2,3].map(parseInt) [执行结果](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
 
 - proxy
 - == 的隐式转化
@@ -91,10 +91,11 @@
 
 ### Vue
 
-- vue 项目开发环境如何配置？wepack-dev-server 热更新功能实现原理
+- vue 项目开发环境如何配置？webpack-dev-server 热更新功能实现原理
 - vue 的 v-model 原理
 - vue 双向绑定 i
-- vue 的 $nextTick; 计算属性如何更新;
+- vue 的 $nextTick;
+- vue 计算属性如何更新;
 - 列表 diff 中 key 的作用
 - 场景题：Vue CheckBoxGroup/CheckBox 设计
 - vue 数据驱动视图原理？更新视图的过程是否是同步的操作？
@@ -122,6 +123,7 @@
   var versions=['1.45.0','1.5','6','3.3.3.3.3.3.3']
   要求从小到大排序，注意'1.45'比'1.5'大
   sorted=['1.5','1.45.0','3.3.3.3.3.3','6']
+  [实现](./JS/versions.html)
 
 ### CSS
 
