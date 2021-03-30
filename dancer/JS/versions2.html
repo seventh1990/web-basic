@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      function compareVersion(a, b) {
+        a = a.split(".");
+        b = b.split(".");
+        let flag;
+
+        while (a.length > 0 && b.length > 0) {
+          flag = a.shift() - b.shift();
+          if (flag !== 0) break;
+        }
+        console.log(flag === 0 ? 0 : flag > 0 ? 1 : -1);
+      }
+
+      compareVersion("0.1", "1.1.1.0");
+      compareVersion("13.37.2", "1.2.2.1 ");
+      compareVersion("1.1", "1.1.0");
+    </script>
+  </body>
+</html>
